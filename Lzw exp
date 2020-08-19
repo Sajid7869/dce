@@ -1,0 +1,15 @@
+Aim:-To study the program of the lzw method.
+Apparatus:- Google colab.
+Therory:-Lempel–Ziv–Welch (LZW) is a universal lossless data compression algorithm created by Abraham Lempel, Jacob Ziv, and Terry Welch.The algorithm is simple to implement, and has the potential for very high throughput in hardware implementations.It is the algorithm of the widely used Unix file compression utility compress, and is used in the GIF image format.
+
+LZW compression uses a code table, as illustrated in Fig. below. A common choice is to provide 4096 entries in the table. In this case, the LZW encoded data consists entirely of 12 bit codes, each referring to one of the entries in the code table.
+Uncompression is achieved by taking each code from the compressed file, and translating it through the code table to find what character or characters it represents.
+Codes 0-255 in the code table are always assigned to represent single bytes from the input file.
+For example, if only these first 256 codes were used, each byte in the original file would be converted into 12 bits in the LZW encoded file, resulting in a 50% larger file size. During uncompression, each 12 bit code would be translated via the code table back into the single bytes. Of course, this wouldn't be a useful situation.
+
+enter image description here
+
+The LZW method achieves compression by using codes 256 through 4095 to represent sequences of bytes. For example, code 523 may represent the sequence of three bytes: 231 124 234. Each time the compression algorithm encounters this sequence in the input file, code 523 is placed in the encoded file.
+During uncompression, code 523 is translated via the code table to recreate the true 3 byte sequence. The longer the sequence assigned to a single code, and the more often the sequence is repeated, the higher the compression achieved.
+code:-
+    encode:-
